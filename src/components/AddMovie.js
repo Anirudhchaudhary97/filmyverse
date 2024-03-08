@@ -19,36 +19,76 @@ const AddMovie = () => {
   });
   const [loading, setLoading] = useState(false);
 
+  // const addMovie = async () => {
+  //   setLoading(true);
+  //   try {
+  //     if(useAppstate.login) {
+  //       await addDoc(moviesRef, form);
+  //       swal({
+  //         title: "Successfully Added",
+  //         icon: "success",
+  //         buttons: false,
+  //         timer: 3000
+  //       })
+  //       setForm({
+  //         title: "",
+  //         year: "",
+  //         description: "",
+  //         image: ""
+  //       })
+  //     } else {
+  //       navigate('/login')
+  //     }
+  //   } catch(err) {
+  //     swal({
+  //       title: err,
+  //       icon: "error",
+  //       buttons: false,
+  //       timer: 3000
+  //     })
+  //   }
+  //   setLoading(false);
+  // }
+
   const addMovie = async () => {
     setLoading(true);
     try {
-      if(useAppstate.login) {
+      if (!form.title || !form.year || !form.image) {
+        // Display an error message if any of the required fields is empty
+        swal({
+          title: "Please fill out all required fields",
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+        });
+      } else if (useAppstate.login) {
         await addDoc(moviesRef, form);
         swal({
           title: "Successfully Added",
           icon: "success",
           buttons: false,
-          timer: 3000
-        })
+          timer: 3000,
+        });
         setForm({
           title: "",
           year: "",
           description: "",
-          image: ""
-        })
+          image: "",
+        });
       } else {
-        navigate('/login')
+        navigate("/login");
       }
-    } catch(err) {
+    } catch (err) {
       swal({
         title: err,
         icon: "error",
         buttons: false,
-        timer: 3000
-      })
+        timer: 3000,
+      });
     }
     setLoading(false);
-  }
+  };
+  
 
   return (
     <div>
@@ -67,6 +107,7 @@ const AddMovie = () => {
                     Title
                   </label>
                   <input
+                    required
                     type="text"
                     id="name"
                     name="name"
@@ -82,6 +123,7 @@ const AddMovie = () => {
                     Year
                   </label>
                   <input
+                    required
                     type="email"
                     id="email"
                     name="email"
@@ -97,6 +139,7 @@ const AddMovie = () => {
                     Image Link
                   </label>
                   <input
+                    required
                     id="message"
                     name="message"
                     value={form.image}
@@ -111,6 +154,7 @@ const AddMovie = () => {
                     Description
                   </label>
                   <textarea
+                    required
                     id="message"
                     name="message"
                     value={form.description}
