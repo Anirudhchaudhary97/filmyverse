@@ -1,5 +1,5 @@
 
-
+// this is cards for movies
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { ThreeDots } from "react-loader-spinner";
