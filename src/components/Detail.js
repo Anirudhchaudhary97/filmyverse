@@ -1,3 +1,4 @@
+// this is detail page of movie
 import React, { useEffect, useState } from 'react'
 import ReactStars from 'react-stars'
 import { useParams } from 'react-router-dom'
