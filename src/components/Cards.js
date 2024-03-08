@@ -6,6 +6,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { getDocs } from "firebase/firestore";
 import { moviesRef } from "../firebase/firebase";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 const Card = () => {
   const [data, setData] = useState([]);
@@ -34,6 +35,7 @@ const Card = () => {
   }, []);
 
   return (
+    <>
     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-3 mt-2">
       {loading ? (
         <div className="w-full flex justify-center items-center h-96">
@@ -60,7 +62,10 @@ const Card = () => {
           </Link>
         ))
       )}
+      
     </div>
+    <Footer/>
+    </>
   );
 };
 
